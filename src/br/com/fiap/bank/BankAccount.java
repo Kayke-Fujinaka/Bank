@@ -1,82 +1,79 @@
 package br.com.fiap.bank;
 
 public class BankAccount {
-	private int number;
-	private int agency;
-	private double balance;
+  private int number;
+  private int agency;
+  private double balance;
 
-	public BankAccount() {
-	}
+  public BankAccount() {
+  }
 
-	public BankAccount(int number, int agency, double balance) {
-		this.setNumber(number);
-		this.setAgency(agency);
-		this.balance = balance;
-	}
+  public BankAccount(int number, int agency, double balance) {
+    this.setNumber(number);
+    this.setAgency(agency);
+    this.balance = balance;
+  }
 
-	public void deposit(double amount) {
-		validateAmount(amount);
+  public void deposit(double amount) {
+    validateAmount(amount);
+    this.balance += amount;
+  }
 
-		this.balance += amount;
-	}
+  public void withdraw(double amount) {
+    validateAmount(amount);
+    if (isInsufficientFunds(amount)) {
+      throw new InsufficientFundsException();
+    }
+    this.balance -= amount;
+  }
 
-	public void withdraw(double amount) {
-		validateAmount(amount);
+  private void validateAmount(double amount) {
+    if (isNegativeAmount(amount)) {
+      throw new NegativeAmountException();
+    }
+  }
 
-		if (isInsufficientFunds(amount)) {
-			throw new InsufficientFundsException();
-		}
+  private boolean isNegativeAmount(double amount) {
+    return amount < 0;
+  }
 
-		this.balance -= amount;
-	}
+  private boolean isInsufficientFunds(double amount) {
+    return amount > this.balance;
+  }
 
-	private void validateAmount(double amount) {
-		if (isNegativeAmount(amount)) {
-			throw new NegativeAmountException();
-		}
-	}
+  public int getNumber() {
+    return number;
+  }
 
-	private boolean isNegativeAmount(double amount) {
-		return amount < 0;
-	}
+  public void setNumber(int number) {
+    this.number = number;
+  }
 
-	private boolean isInsufficientFunds(double amount) {
-		return amount > this.balance;
-	}
+  public int getAgency() {
+    return agency;
+  }
 
-	public int getNumber() {
-		return number;
-	}
+  public void setAgency(int agency) {
+    this.agency = agency;
+  }
 
-	public void setNumber(int number) {
-		this.number = number;
-	}
-
-	public int getAgency() {
-		return agency;
-	}
-
-	public void setAgency(int agency) {
-		this.agency = agency;
-	}
-
-	public double getBalance() {
-		return balance;
-	}
+  public double getBalance() {
+    return balance;
+  }
 }
 
 class NegativeAmountException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public NegativeAmountException() {
-		super("Insira um valor positivo.");
-	}
+  public NegativeAmountException() {
+    super("Insira um valor positivo.");
+  }
 }
 
 class InsufficientFundsException extends RuntimeException {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public InsufficientFundsException() {
-		super("Saldo insuficiente.");
-	}
+  public InsufficientFundsException() {
+    super("Saldo insuficiente.");
+  }
 }
