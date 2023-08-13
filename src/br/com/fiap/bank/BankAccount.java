@@ -1,9 +1,9 @@
 package br.com.fiap.bank;
 
 public class BankAccount {
-	int number;
-	int agency;
-	double balance;
+	private int number;
+	private int agency;
+	private double balance;
 
 	private static final String INVALID_DEPOSIT_MESSAGE = "Insira um valor positivo para depósito.";
 
