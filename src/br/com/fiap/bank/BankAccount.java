@@ -5,8 +5,8 @@ public class BankAccount {
 	private int agency;
 	private double balance;
 
-	private static final String NEGATIVE_AMOUNT_MESSAGE = "Insira um valor positivo.";
-	private static final String INSUFFICIENT_FUNDS_MESSAGE = "Saldo insuficiente.";
+	public BankAccount() {
+	}
 
 	public BankAccount(int number, int agency, double balance) {
 		this.setNumber(number);
@@ -15,22 +15,25 @@ public class BankAccount {
 	}
 
 	public void deposit(double amount) {
-		if (isNegativeAmount(amount)) {
-			throw new NegativeAmountException(NEGATIVE_AMOUNT_MESSAGE);
-		}
+		validateAmount(amount);
 
 		this.balance += amount;
 	}
 
 	public void withdraw(double amount) {
-		if (isNegativeAmount(amount)) {
-			throw new NegativeAmountException(NEGATIVE_AMOUNT_MESSAGE);
-		}
+		validateAmount(amount);
+
 		if (isInsufficientFunds(amount)) {
-			throw new InsufficientFundsException(INSUFFICIENT_FUNDS_MESSAGE);
+			throw new InsufficientFundsException();
 		}
 
 		this.balance -= amount;
+	}
+
+	private void validateAmount(double amount) {
+		if (isNegativeAmount(amount)) {
+			throw new NegativeAmountException();
+		}
 	}
 
 	private boolean isNegativeAmount(double amount) {
@@ -59,5 +62,21 @@ public class BankAccount {
 
 	public double getBalance() {
 		return balance;
+	}
+}
+
+class NegativeAmountException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	public NegativeAmountException() {
+		super("Insira um valor positivo.");
+	}
+}
+
+class InsufficientFundsException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+
+	public InsufficientFundsException() {
+		super("Saldo insuficiente.");
 	}
 }
