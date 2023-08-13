@@ -1,11 +1,12 @@
 package br.com.fiap.bank;
 
 public class BankAccount {
-	private int number;
-	private int agency;
-	private double balance;
+	public int number;
+	public int agency;
+	public double balance;
 
 	private static final String INVALID_DEPOSIT_MESSAGE = "Insira um valor positivo para depósito.";
+	private static final String INSUFFICIENT_FUNDS_MESSAGE = "Saldo insuficiente.";
 
 	public BankAccount(int number, int agency, double balance) {
 		this.setNumber(number);
@@ -26,8 +27,17 @@ public class BankAccount {
 		return amount >= 0;
 	}
 
-	public void withdraw(double value) {
-		this.balance -= value;
+	public void withdraw(double amount) {
+		if (!isValidWithdrawAmount(amount)) {
+			System.out.println(INSUFFICIENT_FUNDS_MESSAGE);
+			return;
+		}
+
+		this.balance -= amount;
+	}
+
+	private boolean isValidWithdrawAmount(double amount) {
+		return amount <= this.balance;
 	}
 
 	public int getNumber() {
