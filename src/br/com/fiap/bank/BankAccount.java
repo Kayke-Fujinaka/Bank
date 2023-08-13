@@ -1,13 +1,13 @@
 package br.com.fiap.bank;
 
-public class Bank {
+public class BankAccount {
 	int number;
 	int agency;
 	double balance;
 
 	private static final String INVALID_DEPOSIT_MESSAGE = "Insira um valor positivo para depósito.";
 
-	public Bank(int number, int agency, double balance) {
+	public BankAccount(int number, int agency, double balance) {
 		this.setNumber(number);
 		this.setAgency(agency);
 		this.setBalance(balance);

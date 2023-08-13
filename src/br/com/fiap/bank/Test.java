@@ -2,7 +2,7 @@ package br.com.fiap.bank;
 
 public class Test {
 	public static void main(String[] args) {
-		Bank cc = new Bank(0, 0, 0);
+		BankAccount cc = new BankAccount(0, 0, 0);
 		cc.balance = 1000;
 		cc.agency = 123;
 		cc.number = 321;
@@ -11,7 +11,7 @@ public class Test {
 
 		System.out.println(cc.getBalance());
 
-		Bank savings = new Bank(100, 123, 1000);
+		BankAccount savings = new BankAccount(100, 123, 1000);
 
 		savings.withdraw(50);
 
