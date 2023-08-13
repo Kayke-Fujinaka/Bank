@@ -2,19 +2,19 @@ package br.com.fiap.bank;
 
 public class Test {
 	public static void main(String[] args) {
-		BankAccount cc = new BankAccount(0, 0, 0);
-		cc.balance = 1000;
-		cc.agency = 123;
-		cc.number = 321;
+		BankAccount checkingAccount = new BankAccount(0, 0, 0);
+		checkingAccount.setBalance(1000);
+		checkingAccount.setAgency(123);
+		checkingAccount.setNumber(321);
 
-		cc.deposit(100);
+		checkingAccount.deposit(100);
 
-		System.out.println(cc.getBalance());
+		System.out.println(checkingAccount.getBalance());
 
-		BankAccount savings = new BankAccount(100, 123, 1000);
+		BankAccount savingsAccount = new BankAccount(100, 123, 1000);
 
-		savings.withdraw(50);
+		savingsAccount.withdraw(50);
 
-		System.out.println(savings.getBalance());
+		System.out.println(savingsAccount.getBalance());
 	}
 }

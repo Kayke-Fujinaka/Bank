@@ -1,9 +1,9 @@
 package br.com.fiap.bank;
 
 public class BankAccount {
-	public int number;
-	public int agency;
-	public double balance;
+	private int number;
+	private int agency;
+	private double balance;
 
 	private static final String NEGATIVE_AMOUNT_MESSAGE = "Insira um valor positivo.";
 	private static final String INSUFFICIENT_FUNDS_MESSAGE = "Saldo insuficiente.";
