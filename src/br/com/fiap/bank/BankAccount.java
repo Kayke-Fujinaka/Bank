@@ -11,7 +11,7 @@ public class BankAccount {
 	public BankAccount(int number, int agency, double balance) {
 		this.setNumber(number);
 		this.setAgency(agency);
-		this.setBalance(balance);
+		this.balance = balance;
 	}
 
 	public void deposit(double amount) {
@@ -65,7 +65,7 @@ public class BankAccount {
 		return balance;
 	}
 
-	public void setBalance(double balance) {
+	private void setBalance(double balance) {
 		this.balance = balance;
 	}
 }

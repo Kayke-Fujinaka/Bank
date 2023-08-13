@@ -2,8 +2,7 @@ package br.com.fiap.bank;
 
 public class Test {
 	public static void main(String[] args) {
-		BankAccount checkingAccount = new BankAccount(0, 0, 0);
-		checkingAccount.setBalance(1000);
+		BankAccount checkingAccount = new BankAccount(0, 0, 1000);
 		checkingAccount.setAgency(123);
 		checkingAccount.setNumber(321);
 
