@@ -5,9 +5,6 @@ public class Bank {
 	int agency;
 	double balance;
 
-	public Bank() {
-	}
-
 	public Bank(int number, int agency, double balance) {
 		this.setNumber(number);
 		this.setAgency(agency);
