@@ -16,8 +16,7 @@ public class BankAccount {
 
 	public void deposit(double amount) {
 		if (isNegativeAmount(amount)) {
-			System.out.println(NEGATIVE_AMOUNT_MESSAGE);
-			return;
+			throw new NegativeAmountException(NEGATIVE_AMOUNT_MESSAGE);
 		}
 
 		this.balance += amount;
@@ -25,13 +24,10 @@ public class BankAccount {
 
 	public void withdraw(double amount) {
 		if (isNegativeAmount(amount)) {
-			System.out.println(NEGATIVE_AMOUNT_MESSAGE);
-			return;
+			throw new NegativeAmountException(NEGATIVE_AMOUNT_MESSAGE);
 		}
-
 		if (isInsufficientFunds(amount)) {
-			System.out.println(INSUFFICIENT_FUNDS_MESSAGE);
-			return;
+			throw new InsufficientFundsException(INSUFFICIENT_FUNDS_MESSAGE);
 		}
 
 		this.balance -= amount;
