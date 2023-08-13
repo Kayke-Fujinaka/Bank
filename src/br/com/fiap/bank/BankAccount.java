@@ -5,7 +5,7 @@ public class BankAccount {
 	public int agency;
 	public double balance;
 
-	private static final String INVALID_DEPOSIT_MESSAGE = "Insira um valor positivo para depósito.";
+	private static final String NEGATIVE_AMOUNT_MESSAGE = "Insira um valor positivo.";
 	private static final String INSUFFICIENT_FUNDS_MESSAGE = "Saldo insuficiente.";
 
 	public BankAccount(int number, int agency, double balance) {
@@ -15,20 +15,21 @@ public class BankAccount {
 	}
 
 	public void deposit(double amount) {
-		if (!isValidDepositAmount(amount)) {
-			System.out.println(INVALID_DEPOSIT_MESSAGE);
+		if (isNegativeAmount(amount)) {
+			System.out.println(NEGATIVE_AMOUNT_MESSAGE);
 			return;
 		}
 
 		this.balance += amount;
 	}
 
-	private boolean isValidDepositAmount(double amount) {
-		return amount >= 0;
-	}
-
 	public void withdraw(double amount) {
-		if (!isValidWithdrawAmount(amount)) {
+		if (isNegativeAmount(amount)) {
+			System.out.println(NEGATIVE_AMOUNT_MESSAGE);
+			return;
+		}
+
+		if (isInsufficientFunds(amount)) {
 			System.out.println(INSUFFICIENT_FUNDS_MESSAGE);
 			return;
 		}
@@ -36,8 +37,12 @@ public class BankAccount {
 		this.balance -= amount;
 	}
 
-	private boolean isValidWithdrawAmount(double amount) {
-		return amount <= this.balance;
+	private boolean isNegativeAmount(double amount) {
+		return amount < 0;
+	}
+
+	private boolean isInsufficientFunds(double amount) {
+		return amount > this.balance;
 	}
 
 	public int getNumber() {
